@@ -39,6 +39,7 @@ lm_coef = function(Y,X){
                    "t.stat" = t_statistic,
                    "p.value" = p_value,
                    row.names = variables)
+  rst = as.matrix(rst)
 
   return(list(coefficients = rst,
               residuals = quantile(epsilonhat)))

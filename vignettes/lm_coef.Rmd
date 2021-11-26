@@ -27,10 +27,28 @@ To use the function `lm_coef`:
 lm_coef(y,x)
 ```
 
-To compare the result of this new implement with the original `lm` function:
+To compare the result for the estimated coefficients of this new implement with the original `lm` function:
 
 ```{r}
-summary(lm(y~x))$coefficients
+lm_est = summary(lm(y~x))$coefficients
+lm_coef_est = lm_coef(y,x)$coefficients
+
+row.names(lm_est) <- NULL
+colnames(lm_est) <- NULL
+
+row.names(lm_coef_est) <- NULL
+colnames(lm_coef_est) <- NULL
+
+all.equal(lm_est, lm_coef_est)
+```
+
+To compare the result for the residuals' quantile of this new implement with the original `lm` function:
+
+```{r}
+lm_res = quantile(summary(lm(y~x))$residuals)
+lm_coef_res = lm_coef(y,x)$residuals
+
+all.equal(lm_res, lm_coef_res)
 ```
 
 To compare the speed of these two implements:
