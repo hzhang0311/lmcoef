@@ -15,8 +15,8 @@ library(lmcoef)
 Assume now we have a vector for the response variable, `y`, with length of n, and a n*m matrix for the independent variable `x`.
 
 ```{r}
-n = 1e6
-m = 5 # number of parameters
+n = 1000
+m = 7 # number of parameters
 y = rnorm(n)
 x = matrix(rnorm(m * n), n, m)
 ```
@@ -25,4 +25,17 @@ To use the function `lm_coef`:
 
 ```{r}
 lm_coef(y,x)
+```
+
+To compare the result of this new implement with the original `lm` function:
+
+```{r}
+summary(lm(y~x))$coefficients
+```
+
+To compare the speed of these two implements:
+
+```{r}
+library(microbenchmark)
+microbenchmark::microbenchmark(summary(lm(y~x))$coefficients, lm_coef(y,x))
 ```
