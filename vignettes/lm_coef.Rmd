@@ -37,5 +37,5 @@ To compare the speed of these two implements:
 
 ```{r}
 library(microbenchmark)
-microbenchmark::microbenchmark(summary(lm(y~x))$coefficients, lm_coef(y,x))
+microbenchmark(summary(lm(y~x))$coefficients, lm_coef(y,x))
 ```
