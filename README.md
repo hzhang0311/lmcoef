@@ -7,4 +7,4 @@
 
 
 ## Download
-devtools::install_github("hzhang0311/lmcoef")
+\code{devtools::install_github("hzhang0311/lmcoef")}
