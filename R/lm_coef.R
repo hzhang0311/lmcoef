@@ -36,8 +36,8 @@ lm_coef = function(Y,X){
 
   rst = data.frame("Estimate" = betahat ,
                    "Std_Err" = se_betahat,
-                   "t.stat" = t_statistic,3,
-                   "p.value" = p_value,3,
+                   "t.stat" = t_statistic,
+                   "p.value" = p_value,
                    row.names = variables)
 
   return(list(coeffients = rst,
