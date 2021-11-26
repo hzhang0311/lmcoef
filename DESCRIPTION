@@ -1,0 +1,10 @@
+Package: lmcoef
+Type: Package
+Title: Estimated Coefficients of Linear Regression Model
+Version: 0.1.0
+Date: 2021-11-26
+Author: Hanwen Zhang
+Maintainer: Hanwen Zhang <hanwenzz@umich.edu>
+Description: This package provides a faster fitting of linear regression and output its estimated coefficients with testing results.
+License: GPL-3
+LazyData: true
