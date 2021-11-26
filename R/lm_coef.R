@@ -40,6 +40,6 @@ lm_coef = function(Y,X){
                    "p.value" = p_value,
                    row.names = variables)
 
-  return(list(coeffients = rst,
+  return(list(coefficients = rst,
               residuals = quantile(epsilonhat)))
 }
