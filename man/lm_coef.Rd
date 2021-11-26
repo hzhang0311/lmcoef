@@ -1,15 +1,31 @@
 \name{lm_coef}
 \alias{lmcoef}
 \title{Estimated Coefficients of Linear Regression Model}
-\usage{
-lm_coef()
-}
 \description{
-This package provides a faster fitting of linear regression and output its estimated coefficients with testing results`
+The function \code{lm_coef} is used to fit linear regression models. Compared to the famous \code{lm} function, it provides a faster fitting of linear regression and output its estimated coefficients with testing results, and the quantile of residuals.
+}
+\usage{
+lm_coef(y,x)
+
+lm_coef(y,x)$coefficients
+
+lm_coef(y,x)$residuals
+}
+\arguments{
+\item{Y}{A size N numeric vector containing the response variable. NAs not allowed.}
+\item{X}{A size N*M numeric matrix containing the independent variable. M represents the number of covariates. NAs not allowed.}
 }
 \examples{
-y = rnorm(100)
-x = matrix(rnorm(2*100),100,2)
-fit = lm_coef(y,x)
+# Given the data below:
+n = 100
+m = 5
+y = rnorm(n)
+x = matrix(rnorm(n*m),n,m)
+
+# To obtain the coefficients of the MLR model:
+est = lm_coef(y,x)$coefficients
+
+# To check the distribution of the residuals:
+res = lm_coef(y,x)$residuals
 }
 
