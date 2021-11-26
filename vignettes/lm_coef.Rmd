@@ -1,0 +1,28 @@
+---
+title: "lm_coef"
+output: html_vignette
+vignette: >
+  %\VigbetteIndexEntry{lm_coef tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lmcoef)
+```
+
+Assume now we have a vector for the response variable, `y`, with length of n, and a n*m matrix for the independent variable `x`.
+
+```{r}
+n = 1e6
+m = 5 # number of parameters
+y = rnorm(n)
+x = matrix(rnorm(m * n), n, m)
+```
+
+To use the function `lm_coef`:
+
+```{r}
+lm_coef(y,x)
+```
