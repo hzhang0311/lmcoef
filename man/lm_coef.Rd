@@ -1,5 +1,5 @@
 \name{lm_coef}
-\alias{lmcoef}
+\alias{lm_coef}
 \title{Estimated Coefficients of Linear Regression Model}
 \description{
 The function \code{lm_coef} is used to fit linear regression models. Compared to the famous \code{lm} function, it provides a faster fitting of linear regression and output its estimated coefficients with testing results, and the quantile of residuals.
