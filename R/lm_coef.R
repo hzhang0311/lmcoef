@@ -1,14 +1,22 @@
+#' lm_coef
+#'
 #' A faster implementation of linear regression that output its estimated coefficients
+#'
 #' @param Y A size n numeric vector containing the response variable. NAs not allowed.
 #' @param X A size n*m numeric matrix containing the independent variable. NAs not allowed.
+#'
 #' @return A data frame containing estimated coefficient, standard error, t-stistics, and p.value; A vector containing quantiles of residuals
+#'
 #' @examples
 #' y = rnorm(100)
 #' x = matrix(rnorm(2*100),100,2)
 #' fit = lm_coef(y,x)
+#'
 #' @importFrom stats pt
+#'
 #' @export
-
+#' A list containing a data frame of estimated coefficients for linear regression and a vector containing the quantile of residuals.
+#'
 lm_coef = function(Y,X){
   X = cbind(1, X) # design matrix
   n = nrow(X)

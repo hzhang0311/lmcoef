@@ -8,5 +8,9 @@ Maintainer: Hanwen Zhang <hanwenzz@umich.edu>
 Description: This package provides a faster fitting of linear regression and output its estimated coefficients with testing results.
 License: GPL-3
 LazyData: true
-Suggests: knitr , rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
