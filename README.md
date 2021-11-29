@@ -4,14 +4,14 @@
 <!-- badges: end -->
 
 ## Overview
-`lmcoef` is a package for statistical analysis that allows users to obtain estimation results from linear regression model with better efficiency. As **a good substitution** for the well-known `lm` function, this package aims to elevate efficiency by allowing users to seperately obtain different estimates that are more useful for them adjusting for different scenrios when analyzing larger datasets. 
+`lmcoef` is a package for statistical analysis that allows users to obtain estimation results from linear regression model with better efficiency. As **a good substitution** for the well-known `lm` function, this package aims to elevate efficiency by allowing users to separately obtain different estimates that are more useful for them adjusting for different scenarios when analyzing larger data sets. 
 
 So far, this package includes one function:
 
 * `lm_coef()`: Compute estimated coefficients of linear regression model with testing results, and returns alongside with quantile values of residuals. 
 
 ## Installation
-Github installation is used to insatll `lmcoef`:
+Github installation is used to install `lmcoef`:
 
 ```r
 # install.packages("devtools")
