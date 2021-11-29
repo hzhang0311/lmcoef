@@ -1,11 +1,11 @@
 #' lm_coef
 #'
-#' A faster implementation of linear regression that output its estimated coefficients
+#' A faster implementation of linear regression that output its estimated coefficients and quantile residuals
 #'
 #' @param Y A size n numeric vector containing the response variable. NAs not allowed.
 #' @param X A size n*m numeric matrix containing the independent variable. NAs not allowed.
 #'
-#' @return A data frame containing estimated coefficient, standard error, t-stistics, and p.value; A vector containing quantiles of residuals
+#' @return A matrix containing estimated coefficient, standard error, t-stistics, and p.value; A vector containing quantiles of residuals
 #'
 #' @examples
 #' y = rnorm(100)
