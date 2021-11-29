@@ -21,18 +21,22 @@ lm_coef = function(Y,X){
   X = cbind(1, X) # design matrix
   n = nrow(X)
   p = ncol(X)
+
   #### Estimation: betahat and var(betahat) ####
-  betahat = solve(t(X)%*%X)%*%t(X)%*%Y
-  Yhat = X%*%betahat
+  betahat = solve(t(X) %*% X) %*% t(X) %*% Y
+  Yhat = X %*% betahat
   epsilonhat = Y - Yhat ## residual
+
   ## estimated sigma^2
-  sigma_squared = t(epsilonhat)%*%epsilonhat/(n-p)
+  sigma_squared = t(epsilonhat) %*% epsilonhat/(n-p)
+
   ## variance of betahat
-  var_betahat = diag( solve(t(X)%*%X) )*c(sigma_squared)
+  var_betahat = diag( solve(t(X) %*% X) )*c(sigma_squared)
   se_betahat = sqrt(var_betahat) ## se of betahat
+
   #### Inference: t statistic and p val for H0: beta=0 ####
-  t_statistic = c(betahat/se_betahat)
-  p_value = c(2*( 1-pt(q=abs(t_statistic),df=n-p) ))
+  t_statistic = c(betahat / se_betahat)
+  p_value = c(2*( 1 - pt(q = abs(t_statistic),df = n-p) ))
 
   if (is.null(colnames(X)) == TRUE){
     variables = c()
