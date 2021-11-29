@@ -18,6 +18,7 @@
 #' A list containing a data frame of estimated coefficients for linear regression and a vector containing the quantile of residuals.
 #'
 lm_coef = function(Y,X){
+  X = as.matrix(X)
   X = cbind(1, X) # design matrix
   n = nrow(X)
   p = ncol(X)
@@ -34,7 +35,7 @@ lm_coef = function(Y,X){
   var_betahat = diag( solve(t(X) %*% X) )*c(sigma_squared)
   se_betahat = sqrt(var_betahat) ## se of betahat
 
-  #### Inference: t statistic and p val for H0: beta=0 ####
+  #### Inference: t statistic and p value ####
   t_statistic = c(betahat / se_betahat)
   p_value = c(2*( 1 - pt(q = abs(t_statistic),df = n-p) ))
 
@@ -53,7 +54,36 @@ lm_coef = function(Y,X){
                    row.names = variables)
   rst = as.matrix(rst)
 
+  #### ANOVA table ####
+  SSR_all = c()
+  for (i in 2:p){
+    Yhat_x = X[,c(1:i)] %*% solve(t(X[,c(1:i)]) %*% X[,c(1:i)]) %*% t(X[,c(1:i)]) %*% Y
+    SSR_x = sum((Yhat_x - mean(Y)) ^ 2)
+    SSR_all = c(SSR_all, SSR_x)
+  }
+  SS = sapply(c(2: (p-1)), function(i) SSR_all[i] - SSR_all[i - 1])
+  SS = c(SSR_all[1], SS, (sum((Yhat - Y) ^ 2)))
+  Df = c(rep(1, p - 1), n - p)
+  MS = (SS / Df)
+  F_statistic = (MS / (sum((Yhat - Y) ^ 2)/(n - p)))[-p]
+  p_value2 = pf(F_statistic, Df[-p], Df[p], lower.tail = FALSE)
+  variables_2 = c(variables[-1], "Residuals")
+
+  ANOVA = data.frame("Df" = Df ,
+                   "Sum Sq" = SS,
+                   "Mean Sq" = MS,
+                   "F value" = c(F_statistic, NA),
+                   "p.value" = c(p_value2, NA),
+                   row.names = variables_2)
+  ANOVA = as.matrix(ANOVA)
+
+  R2 = sum((Yhat - mean(Y)) ^ 2) / sum((Y - mean(Y)) ^ 2)
+  R2_adj = 1 - (sum((Yhat - Y) ^ 2)/(n - p)) / (sum((Y - mean(Y)) ^ 2)/(n - 1))
+
   return(list(coefficients = rst,
+              anova = ANOVA,
+              R2 = R2,
+              R2_adj = R2_adj,
               fitted.values = Yhat,
               residuals = epsilonhat))
 }
