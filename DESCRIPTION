@@ -1,4 +1,4 @@
-Package: coef
+Package: lmcoef
 Type: Package
 Title: Coefficients Estimation for Fitted Model
 Version: 0.1.0
