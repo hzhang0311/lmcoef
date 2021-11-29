@@ -6,11 +6,20 @@
 ## Overview
 `lmcoef` is a package for statistical analysis that allows users to obtain estimation results from linear regression model with better efficiency. As **a good substitution** for the well-known `lm` function, this package aims to elevate efficiency by allowing users to separately obtain different estimates that are more useful for them adjusting for different scenarios when analyzing larger data sets. As a new implementation, it would save much time when user facing a specific condition of constraint polynomial regression.
 
+
 So far, this package includes one function:
 
 * `lm_coef()`: Compute estimated coefficients of linear regression model with testing results, and returns alongside with values of fitted values and residuals. 
 
-* `cpr_coef()`: 
+* `cpr_coef()`: Compute estimated coefficients of constraint polynomial regression model with testing results, and returns alongside with values of fitted values and residuals. The function is applicable if and only if the constraint is:
+
+  For i = 1,...,n
+
+  ![image](https://user-images.githubusercontent.com/40233610/143887785-dc6d41f8-b73e-411d-b2b4-033f4b2f3b62.png)
+
+  where parameter beta(j) = beta(j-1)/j for j = 2,...,p and predictor X(i) = i/n.
+
+
 
 ## Installation
 Github installation is used to install `lmcoef`:
