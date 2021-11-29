@@ -1,11 +1,11 @@
 #' lm_coef
 #'
-#' A faster implementation of linear regression that output its estimated coefficients and quantile residuals
+#' A faster implementation of linear regression that output its estimated coefficients, fitted values, and residuals
 #'
 #' @param Y A size n numeric vector containing the response variable. NAs not allowed.
 #' @param X A size n*m numeric matrix containing the independent variable. NAs not allowed.
 #'
-#' @return A matrix containing estimated coefficient, standard error, t-stistics, and p.value; A vector containing quantiles of residuals
+#' @return A matrix containing estimated coefficient, standard error, t-stistics, and p.value; A vector containing residuals; A list containing fitted values.
 #'
 #' @examples
 #' y = rnorm(100)
@@ -50,5 +50,6 @@ lm_coef = function(Y,X){
   rst = as.matrix(rst)
 
   return(list(coefficients = rst,
-              residuals = quantile(epsilonhat)))
+              fitted.values = Yhat,
+              residuals = epsilonhat))
 }

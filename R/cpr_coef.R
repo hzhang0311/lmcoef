@@ -59,5 +59,7 @@ cpr_coef <- function(p, y){
                    row.names = variables)
   rst = as.matrix(rst)
 
-  return(list(coefficients = rst, residuals = quantile(e_hat)))
+  return(list(coefficients = rst,
+              fitted.values = y_hat,
+              residuals = e_hat))
 }
