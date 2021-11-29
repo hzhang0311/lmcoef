@@ -49,7 +49,7 @@ cpr_coef <- function(p, y){
 
   x_fit = cbind(1, sapply(c(1:p), function(j) x^j))
   y_hat = as.vector(beta %*% t(x_fit))
-  e_hat = y - y_hat
+  e_hat = y_hat - y
 
   variables = c()
   variables = sapply(c(1:(length(beta)-1)), function(i) append(variables,paste0("b", i)))
