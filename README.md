@@ -4,7 +4,7 @@
 <!-- badges: end -->
 
 ## Overview
-`lmcoef` is a package for statistical analysis that allows users to obtain estimation results from linear regression model with better efficiency. As **a good substitution** for the well-known `lm` function, this package aims to elevate efficiency by allowing users to separately obtain different estimates that are more useful for them adjusting for different scenarios when analyzing larger data sets. As a new implementation, it would save much time when user facing a specific condition of constraint polynomial regression.
+`lmcoef` is a package for statistical analysis that allows users to obtain estimation results from linear regression model with another implementation. As **a substitution** for the well-known `lm` function, this package aims to allow users to separately obtain different estimates that are more useful for them adjusting for different scenarios when analyzing larger data sets. As a new implementation, it would save much time when user facing a specific condition of constraint polynomial regression.
 
 
 So far, this package includes one function:
