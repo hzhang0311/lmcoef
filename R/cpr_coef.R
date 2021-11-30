@@ -1,11 +1,11 @@
 #' cpr_coef
 #'
-#' An implementation of fitting a constrained polynomial regression that output its estimated coefficients and quantile residuals
+#' An implementation of fitting a constrained polynomial regression that output its estimated coefficients, fitted values and residuals
 #'
 #' @param Y A size n numeric vector containing the response variable. NAs not allowed.
 #' @param X A size n*m numeric matrix containing the independent variable. NAs not allowed.
 #'
-#' @return A numeric vector containing estimated coefficient; A numeric vector containing residuals.
+#' @return A numeric vector containing estimated coefficient; A numeric vector containing residuals; A numeric vector containing fitted values
 #'
 #' @examples
 #' y = c(1,3,3,3,4,5,3,2,-1)
@@ -15,7 +15,7 @@
 #' @importFrom stats pt
 #'
 #' @export
-#' A list containing a numeric vector containing estimated coefficient and a numeric vector containing quantiled residuals for constrained polynomial regression.
+#' A list containing a numeric vector containing estimated coefficient, a numeric vector containing fitted values, and a numeric vector containing residuals for constrained polynomial regression.
 #'
 cpr_coef <- function(p, y){
 
