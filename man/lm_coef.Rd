@@ -2,7 +2,7 @@
 \alias{lm_coef}
 \title{Estimation of Linear Regression Model}
 \description{
-The function \code{lm_coef} is used to fit linear regression models. Compared to the famous \code{lm} function, it provides a faster fitting of linear regression and output its estimated coefficients with testing results, ANOVA result, R squared, adjusted R squared, residuals, and fitted values.
+The function \code{lm_coef} is used to fit linear regression models. Compared to the famous \code{lm} function, it provides a more overall fitting of linear regression and output its estimated coefficients with testing results, ANOVA result, R squared, adjusted R squared, residuals, and fitted values.
 }
 \usage{
 lm_coef(y,x)$coefficients
