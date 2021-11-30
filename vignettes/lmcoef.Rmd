@@ -17,10 +17,12 @@ library(lmcoef)
 Assume now we have a vector for the response variable, `y`, with length of n, and a n*m matrix for the independent variable `x`.
 
 ```{r}
-n = 1000
-m = 7 # number of parameters
-y = rnorm(n)
-x = matrix(rnorm(m * n), n, m)
+y = c(78.5, 74.3, 104.3, 87.6, 95.9, 109.2, 102.7, 72.5, 93.1, 115.9, 83.8, 113.3, 109.4)
+x = data.frame(X1 = c(7, 1, 11, 11, 7, 11, 3, 1, 2, 21, 1, 11, 10), 
+                     X2 = c(26, 29, 56, 31, 52, 55, 71, 31, 54, 47, 40, 66, 68), 
+                     X3 = c(6, 15, 8, 8, 6, 9, 17, 22, 18, 4, 23, 9, 8), 
+                     X4 = c(60, 52, 20, 47, 33, 22, 6, 44, 22, 26, 34, 12, 12))
+data= cbind(y,x)
 ```
 
 To use the function `lm_coef`:
@@ -32,7 +34,7 @@ rst = lm_coef(y,x)
 To compare the result for the estimated coefficients of this new implement with the original `lm` function:
 
 ```{r}
-lm_est = summary(lm(y~x))$coefficients
+lm_est = summary(lm(y~., data))$coefficients
 lm_coef_est = rst$coefficients
 
 row.names(lm_est) <- NULL
@@ -42,6 +44,16 @@ row.names(lm_coef_est) <- NULL
 colnames(lm_coef_est) <- NULL
 
 all.equal(lm_est, lm_coef_est)
+```
+
+Since 'anova' object must have colnames, To compare the result for the ANOVA table of this new implement with the original `lm` function, we just simply observe two outputs and they are the same:
+
+```{r}
+lm_anova = anova(lm(y~., data))
+lm_coef_anova = rst$anova
+
+lm_anova
+lm_coef_anova
 ```
 
 To compare the result for the residuals of this new implement with the original `lm` function:
@@ -62,14 +74,14 @@ lm_coef_fit = as.vector(rst$fitted.values)
 all.equal(lm_res, lm_coef_res)
 ```
 
-To compare the speed of these two implements:
+We compare the speed of these two implements - the new implement is slower than the original function:
 
 ```{r}
 library(microbenchmark)
 microbenchmark(summary(lm(y~x))$coefficients, lm_coef(y,x)$coefficients)
+microbenchmark(anova(lm(y~x)), lm_coef(y,x)$anova)
 microbenchmark(summary(lm(y~x))$residuals, lm_coef(y,x)$residuals)
 microbenchmark(summary(lm(y~x))$fitted.values, lm_coef(y,x)$fitted.values)
-
 ```
 
 ## cpr_coef
@@ -131,7 +143,7 @@ colnames(cpr_coef_est) <- NULL
 all.equal(lm_est, cpr_coef_est)
 ```
 
-To compare the speed of these two implements:
+By comparing the speed of these two implements, we could observe that the `cpr_coef` function could save much time: 
 
 ```{r}
 library(microbenchmark)
