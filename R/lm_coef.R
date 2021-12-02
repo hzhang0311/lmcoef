@@ -61,14 +61,22 @@ lm_coef = function(Y,X){
     SSR_x = sum((Yhat_x - mean(Y)) ^ 2)
     SSR_all = c(SSR_all, SSR_x)
   }
-  SS = sapply(c(2: (p-1)), function(i) SSR_all[i] - SSR_all[i - 1])
-  SS = c(SSR_all[1], SS, (sum((Yhat - Y) ^ 2)))
-  Df = c(rep(1, p - 1), n - p)
-  MS = (SS / Df)
-  F_statistic = (MS / (sum((Yhat - Y) ^ 2)/(n - p)))[-p]
-  p_value2 = pf(F_statistic, Df[-p], Df[p], lower.tail = FALSE)
-  variables_2 = c(variables[-1], "Residuals")
+  if (length(SSR_all) == 1){
+    Df = c(rep(1, p - 1), n - p)
+    SS = SSR_all
+    MS = SSR_all
+    F_statistic = (MS / (sum((Yhat - Y) ^ 2)/(n - p)))[-p]
+    p_value2 = pf(F_statistic, Df[-p], Df[p], lower.tail = FALSE)
+  } else {
+    SS = sapply(c(2: (p-1)), function(i) SSR_all[i] - SSR_all[i - 1])
+    SS = c(SSR_all[1], SS, (sum((Yhat - Y) ^ 2)))
+    Df = c(rep(1, p - 1), n - p)
+    MS = (SS / Df)
+    F_statistic = (MS / (sum((Yhat - Y) ^ 2)/(n - p)))[-p]
+    p_value2 = pf(F_statistic, Df[-p], Df[p], lower.tail = FALSE)
+  }
 
+  variables_2 = c(variables[-1], "Residuals")
   ANOVA = data.frame("Df" = Df ,
                    "Sum Sq" = SS,
                    "Mean Sq" = MS,
