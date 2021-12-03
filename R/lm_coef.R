@@ -63,8 +63,8 @@ lm_coef = function(Y,X){
   }
   if (length(SSR_all) == 1){
     Df = c(rep(1, p - 1), n - p)
-    SS = SSR_all
-    MS = SSR_all
+    SS = c(SSR_all, sum((Yhat_x - Y) ^ 2))
+    MS = SS
     F_statistic = (MS / (sum((Yhat - Y) ^ 2)/(n - p)))[-p]
     p_value2 = pf(F_statistic, Df[-p], Df[p], lower.tail = FALSE)
   } else {
